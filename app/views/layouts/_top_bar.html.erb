@@ -1,5 +1,27 @@
-<% if current_user %>
-  <%= link_to "Sign out", "/sign_out" %>
-<% else %>
-  <%= link_to "Sign in with Github", "/auth/github" %>
-<% end %>
+<div class="contain-to-grid hide-for-small">
+  <nav class="top-bar">
+    <ul class="title-area">
+      <li class="name">
+        <%= render "layouts/logo" %>
+      </li>
+    </ul>
+
+    <section class="top-bar-section">
+      <ul class="right">
+        <% if current_user %>
+          <li class="has-dropdown not-click">
+            <%= link_to "#" do %>
+              <%= image_tag current_user.avatar_url, class: "image-topbar" %>
+              <span><%= current_user.username %></span>
+            <% end %>
+            <ul class="dropdown">
+              <%= render "layouts/navigation_links" %>
+            </ul>
+          </li>
+        <% else %>
+          <%= link_to "Sign in with Github", "/auth/github" %>
+        <% end %>
+      </ul>
+    </section>
+  </nav>
+</div>
